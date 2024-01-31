@@ -1,0 +1,206 @@
+1
+1
+1
+ram preetham
+now 24
+jul 19
+1
+1
+1
+mohan krishna
+now 25
+nov 1
+1
+1
+1
+nanda kumar
+now 23
+nov 18
+1
+1
+1
+hema
+now 22
+sep 26
+1
+1
+4
+ram's org
+now 25
+23 46
+1
+1
+1
+2
+1
+3
+2
+1
+1
+4
+krish's org
+now 25
+1 45
+1
+2
+1
+0
+1
+3
+2
+1
+1
+3
+sweet-business
+now 25
+1 3
+2
+2
+2
+3
+1
+1
+1
+0
+3
+1
+1
+3
+software business
+now 25
+3 4
+2
+0
+2
+1
+1
+3
+1
+2
+3
+1
+1
+2
+kanchi group
+now 25
+1
+3
+2
+6
+2
+7
+1
+2
+3
+1
+1
+2
+kaveri-group
+now 25
+1
+0
+2
+6
+1
+2
+3
+4
+2
+nanda here hbed
+4
+1
+krishna here djbh
+4
+0
+ramu here wjbde
+4
+4
+kanchi here bdwe
+4 
+3
+hema here ndbe ejdb
+4 
+4
+welcome-ram-org jej
+4 
+6
+welcome-kanchi-grp jrf 
+4 
+8
+welcome-sweet-bsn jhs
+1
+2
+6
+3
+8
+7
+
+//search input
+2
+1
+krish's-org
+2
+1
+krish's-wrong
+2
+2
+2
+2
+2
+3
+
+//search linked nodes
+6
+1
+6
+2
+6
+3
+6
+0
+
+//deleting Nodes
+1
+2
+1
+1
+2
+5
+1
+2
+9
+1
+2
+6
+
+//deleting all nodes
+1
+2
+5
+1
+2
+6
+1
+2
+4
+1
+2
+7
+1
+2
+2
+1
+2
+0
+1
+2
+1
+1
+2
+3
+1
+2
+8
+1
+2
+9
