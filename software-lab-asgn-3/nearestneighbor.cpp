@@ -149,7 +149,7 @@ class VectorDataSet {
       stringstream s(line);
       vector<string> row;
       while (getline(s, word, ',')) {
-        cout<<"read a line\n";
+        // cout<<"read a line\n";
         row.push_back(word);
       }
       vs.push_back(DataVector(row));
