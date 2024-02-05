@@ -13,6 +13,7 @@
 using namespace std;
 
 // returns the k nearest neighbors of the given DataVector from the given VectorDataSet
+
 VectorDataSet knearestneighbor(const VectorDataSet &vector_set, const DataVector &data_vector, int k) {
   VectorDataSet near_data_set;
   int size = vector_set.size();
