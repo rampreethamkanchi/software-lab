@@ -1,3 +1,4 @@
+#include <chrono>
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -5,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+
 using namespace std;
 
 class DataVector {
@@ -79,7 +81,7 @@ class DataVector {
       exit(1);
     }
   }
-  double distance(const DataVector &other) const{
+  double distance(const DataVector &other) const {
     int lsize = this->size();
     int rsize = other.size();
     double distance = 0;
@@ -132,16 +134,27 @@ class VectorDataSet {
   }
 
   void print() const {
-    for (const DataVector &data_vector : vs) {
-      for (int i = 0; i < data_vector.size(); i++) {
-        cout << data_vector.at(i) << " ";
+    cout << "printing..\n";
+    // for (const DataVector &data_vector : vs) {
+    //   cout<<"dim of vector is "<<data_vector.size()<<endl;
+    //   for (int i = 0; i < data_vector.size(); i++) {
+    //     cout << data_vector.at(i) << " ";
+    //   }
+    //   cout << endl;
+    // }
+    cout << "size of vs is " << vs.size() << endl;
+
+    for (int i = 0; i < vs.size(); i++) {
+      for (int j = 0; j < (vs[i]).size(); j++) {
+        cout << vs[i].at(j) << " ";
       }
-      cout << endl;
     }
+
+    cout << "printed..\n";
   }
 
   void ReadDataset() {
-    cout<<"Reading dataset\n";
+    cout << "Reading dataset\n";
     ifstream file("fmnist-train.csv");
     string line, word;
 
@@ -154,38 +167,49 @@ class VectorDataSet {
       }
       vs.push_back(DataVector(row));
     }
-    cout<<"Dataset read\n";
+    cout << "Dataset read\n";
   }
 };
 
 VectorDataSet knearestneighbor(const VectorDataSet &vector_set, const DataVector &data_vector, int k) {
   VectorDataSet near_data_set;
   int size = vector_set.size();
-    // priority_queue<double> pq;
-    priority_queue<pair<double, int>> pq;
-    for(int i = 0; i < size; i++){
-      double distance = data_vector.distance(vector_set.at(i));
-      if(pq.size() < k)
-        pq.push({distance, i});
-      else if(pq.top().first > distance){
-        pq.pop();
-        pq.push({distance, i});
-      }
+  // priority_queue<double> pq;
+  priority_queue<pair<double, int>> pq;
+  std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+  for (int i = 0; i < size; i++) {
+    double distance = data_vector.distance(vector_set.at(i));
+    if (pq.size() < k){
+      cout<<"present size : "<<pq.size()<<endl;
       pq.push({distance, i});
     }
+    else if (pq.top().first > distance) {
+      pq.pop();
+      pq.push({distance, i});
+    }
+  }
+  std::chrono::high_resolution_clock::time_point stop = std::chrono::high_resolution_clock::now();
+  std::chrono::microseconds duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  std::cout << "Time taken for processing your function: " << duration.count() << " microseconds" << std::endl;
+  while (!pq.empty()) {
+    near_data_set.push(vector_set.at(pq.top().second));
+    pq.pop();
+  }
   return near_data_set;
 }
 
 int main() {
   VectorDataSet data_set;
   int k;
+  // k=5
+  cin >> k;
   data_set.ReadDataset();
-//   for (int i = 0; i < data_set.size(); i++) {
-//     VectorDataSet near_data_set = knearestneighbor(data_set, data_set.at(i), k);
-//     near_data_set.print();
-//   }
-    VectorDataSet near_data_set = knearestneighbor(data_set, data_set.at(0), k);
-    near_data_set.print();
+  //   for (int i = 0; i < data_set.size(); i++) {
+  //     VectorDataSet near_data_set = knearestneighbor(data_set, data_set.at(i), k);
+  //     near_data_set.print();
+  //   }
+  VectorDataSet near_data_set = knearestneighbor(data_set, data_set.at(0), k);
+  near_data_set.print();
 
   return 0;
 }
