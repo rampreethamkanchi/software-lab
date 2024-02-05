@@ -42,11 +42,11 @@ class VectorDataSet {
 
     // cout << "printed..\n";
   }
-  // reads the dataset from the csv file and stores it in the vector of DataVector
-  void ReadDataset() {
-    cout << "Reading dataset\n";
+  // reads the complete dataset from the csv file and stores it in the vector of DataVector
+  void ReadDataset(const string &filename) {
+    cout << "Reading complete dataset " << filename << "\n";
     // craeting an ifstream object to read the file
-    ifstream file("fmnist-train.csv");
+    ifstream file(filename);
     string line, word;
     // reading the file line by line and storing the values in the vector of DataVector
     while (getline(file, line)) {
@@ -60,6 +60,29 @@ class VectorDataSet {
       // adding the row to the vector of DataVector
       vs.push_back(DataVector(row));
     }
-    cout << "Dataset read\n";
+    cout << filename << " dataset read\n";
+  }
+  // reads the dataset from the csv file upto n lines and stores it in the vector of DataVector
+  void ReadDataset(int n, const string &filename) {
+    cout << "Reading dataset " << filename << " upto " << n << " lines"
+         << "\n";
+    // craeting an ifstream object to read the file
+    ifstream file(filename);
+    string line, word;
+    int i = 0;
+    // reading the file line by line and storing the values in the vector of DataVector
+    while (getline(file, line) && i < n) {
+      // creating a string stream object to read the line with ',' as separator
+      stringstream s(line);
+      vector<string> row;
+      while (getline(s, word, ',')) {
+        // cout<<"read a line\n";
+        row.push_back(word);
+      }
+      // adding the row to the vector of DataVector
+      vs.push_back(DataVector(row));
+      i++;
+    }
+    cout << filename << " dataset read\n";
   }
 };
