@@ -29,7 +29,7 @@ Y = np.transpose(gray_X)
 # obtain Z = X×Y 
 Z = np.matmul(gray_X, Y)
 # print the resultant matrix Z
-print(Z)
+# print(Z)
 
 #8. For all the problems 7, repeat without using NumPy and compare the computation times doing the same with NumPy.
 #using numpy
