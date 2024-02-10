@@ -39,6 +39,7 @@ start = time.time()
 Y = np.transpose(gray_X)
 numpyZ = np.matmul(gray_X,Y)
 end = time.time()
+#takes nearly 1 second
 print(end - start)
 
 #without using numpy
@@ -57,6 +58,7 @@ for i in range(gray_X.shape[0]):
         for k in range(gray_X.shape[1]):
             Z[i,j] += gray_X_Copy[i,k] * Y[k,j]
 end = time.time()
+#takes nearly 450 seconds
 print(end - start)
 
 #9. Plot the pixel intensity histogram using the grayscale image. Hint: Use matplotlib to plot
