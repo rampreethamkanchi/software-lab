@@ -1,20 +1,20 @@
-#5. Write a program to read an image, store the image in NumPy 2-D array. For the image consider a.PNG. Display the image. Let the array be X. Hint: Use OpenCV to work with images.
 import cv2
 import numpy as np
+#5. Write a program to read an image, store the image in NumPy 2-D array. For the image consider a.PNG. Display the image. Let the array be X. Hint: Use OpenCV to work with images.
 # read an image using OpenCV and store the image in NumPy 2-D array
 X = np.array(cv2.imread('a.png',cv2.IMREAD_COLOR))
 # set the window to autosize
 # cv2.namedWindow('OUTPUT', cv2.WINDOW_AUTOSIZE)
 # display the image
 
-cv2.imshow('OUTPUT', X)
+cv2.imshow('Given Image', X)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 #6. Write a program to convert a color image (say a.PNG) into a grescale image. Let the greysacle image stored in the Numpy 2-D array be X. Display the grayscale iamge on the screen. Hint: Greyscale value of a pixel is the mean of three RGB values of that pixel.
 # convert the color image to grayscale
 gray_X = cv2.cvtColor(X, cv2.COLOR_BGR2GRAY)
-cv2.imshow('OUTPUT', gray_X)
+cv2.imshow('Grey Scale Image', gray_X)
 cv2.waitKey(0)
 cv2.destroyAllWindows() 
 
@@ -23,13 +23,13 @@ cv2.destroyAllWindows()
 # print('Width:', gray_X.shape[1])
 # print('Height:', gray_X.shape[0])
 
-#7. Let Y be the transpose matrix of X. Write a program to obtain Z = X×Y. please ignore 800, make transpose of X and multiply X and Y.
+#7. Let Y be the transpose matrix of X. Write a program to obtain Z = X×Y.
 # obtain Y = transpose matrix of X
 Y = np.transpose(gray_X)
 # obtain Z = X×Y 
-Z = np.dot(gray_X,Y)
+Z = np.matmul(gray_X, Y)
 # print the resultant matrix Z
-# print(Z)
+print(Z)
 
 #8. For all the problems 7, repeat without using NumPy and compare the computation times doing the same with NumPy.
 #using numpy
@@ -37,7 +37,7 @@ import time
 
 start = time.time()
 Y = np.transpose(gray_X)
-numpyZ = np.dot(gray_X,Y)
+numpyZ = np.matmul(gray_X,Y)
 end = time.time()
 print(end - start)
 
@@ -50,7 +50,7 @@ Y = np.zeros((gray_X.shape[1], gray_X.shape[0]), dtype=np.float64)
 for i in range(gray_X.shape[0]):
     for j in range(gray_X.shape[1]):
         Y[j,i] = gray_X_Copy[i,j]
-# find the resultant matrix Z
+# find the resultant matrix Z , matrix multiplication of X and Y
 Z = np.zeros((gray_X.shape[0], gray_X.shape[0]), dtype=np.float64)
 for i in range(gray_X.shape[0]):
     for j in range(gray_X.shape[0]):
@@ -71,26 +71,27 @@ plt.show()
 gray_X_Copy = gray_X.copy()
 gray_X_Copy[100:200,40:70] = 0
 # display the image
-cv2.imshow('OUTPUT', gray_X_Copy)
+cv2.imshow('Grey Scale with black rectangle', gray_X_Copy)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 #11. For the grayscale image, display the binarized image with thresholds: [50, 70, 100, 150]. Hint: Binarizing is thresholding each pixel value, i.e., if pixel>threshold, then 1 else 0.
 # display the binarized image with thresholds: [50, 70, 100, 150]
+# first term in output is the threshold value which is not used in the output
 _, binarized_image1 = cv2.threshold(gray_X, 50, 255, cv2.THRESH_BINARY)
 _, binarized_image2 = cv2.threshold(gray_X, 70, 255, cv2.THRESH_BINARY)
 _, binarized_image3 = cv2.threshold(gray_X, 100, 255, cv2.THRESH_BINARY)
 _, binarized_image4 = cv2.threshold(gray_X, 150, 255, cv2.THRESH_BINARY)
-cv2.imshow('OUTPUT', binarized_image1)
+cv2.imshow('Threshold 50', binarized_image1)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-cv2.imshow('OUTPUT', binarized_image2)
+cv2.imshow('Threshold 70', binarized_image2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-cv2.imshow('OUTPUT', binarized_image3)
+cv2.imshow('Threshold 100', binarized_image3)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-cv2.imshow('OUTPUT', binarized_image4)
+cv2.imshow('Threshold 150', binarized_image4)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
@@ -99,6 +100,6 @@ cv2.destroyAllWindows()
 filter = np.array([[-1,-1,-1],[0,0,0],[1,1,1]])
 filtered_image = cv2.filter2D(X, -1, filter)
 # output the resultant image
-cv2.imshow('OUTPUT', filtered_image)
+cv2.imshow('Filtered Image', filtered_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
