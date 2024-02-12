@@ -23,9 +23,9 @@ print('Reversed array of book1.csv:', reversed_data)
 
 #4. Write a program to load three .csv files (Book1.csv, Book2.csv, and Book3.csv) as a list of Numpy 1-D arrays. Print the means of all arrays as a list.
 # read three csv files into a list of numpy 1-D arrays using genfromtxt
-data1 = np.genfromtxt('book1.csv', delimiter='\t', skip_header=1, usecols=1, dtype=int)
-data2 = np.genfromtxt('book2.csv', delimiter='\t', skip_header=1, usecols=1, dtype=int)
-data3 = np.genfromtxt('book3.csv', delimiter='\t', skip_header=1, usecols=1, dtype=int)
+data1 = np.genfromtxt('book1.csv', delimiter='\t', skip_header=1, usecols=1, dtype=float)
+data2 = np.genfromtxt('book2.csv', delimiter='\t', skip_header=1, usecols=1, dtype=float)
+data3 = np.genfromtxt('book3.csv', delimiter='\t', skip_header=1, usecols=1, dtype=float)
 data_list = [data1, data2, data3]
 
 # using for in loop to find the mean of all arrays and print it.
